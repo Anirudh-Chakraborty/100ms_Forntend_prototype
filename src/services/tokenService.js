@@ -19,8 +19,11 @@ const fetchWithRetry = async (url, options) => {
 
 export default async function getToken(tokenEndpoint, userId, role, roomId) {
   try {
-    const response = await fetchWithRetry(`${tokenEndpoint}api/token`, {
+    const response = await fetchWithRetry(`${tokenEndpoint}join-room`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         role,
         room_id: roomId,
